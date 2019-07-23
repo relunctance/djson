@@ -110,6 +110,60 @@ func main() {
 }
 ```
 
+This will print:
+```json
+{
+    "name": {
+        "first": "Tom",
+        "last": "Anderson"
+    },
+    "children": [
+        "Alex",
+        "Jack"
+    ],
+    "fav.movie": "Deer Hunter",
+    "friends": [
+        {
+            "last": "Murphy"
+        },
+        {
+            "last": "Craig",
+            "name": "abc"
+        },
+        {
+            "last": "Murphy"
+        },
+        {
+            "c": [
+                {
+                    "kw": {
+                        "signature": [
+                            "c1"
+                        ]
+                    }
+                },
+                {
+                    "kw": {
+                        "signature": [
+                            "c2"
+                        ]
+                    }
+                },
+                {
+                    "kw": {
+                        "signature": [
+                            "c3"
+                        ]
+                    }
+                }
+            ],
+            "last": "Craig",
+            "name": "abc"
+        }
+    ]
+}
+```
+
 
 Path syntax
 -----------
