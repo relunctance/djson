@@ -118,86 +118,86 @@ println(value)
 
     // Output:
     // {"name":"Tom"}
-    ```
+```
 
     Set a nested value from empty document:
-    ```go
+```go
     value, _ := djson.Set("", "name.last", "Anderson")
 println(value)
 
     // Output:
     // {"name":{"last":"Anderson"}}
-    ```
+```
 
     Set a new value:
-    ```go
+```go
     value, _ := djson.Set(`{"name":{"last":"Anderson"}}`, "name.first", "Sara")
 println(value)
 
     // Output:
     // {"name":{"first":"Sara","last":"Anderson"}}
-    ```
+```
 
     Update an existing value:
-    ```go
+```go
     value, _ := djson.Set(`{"name":{"last":"Anderson"}}`, "name.last", "Smith")
 println(value)
 
     // Output:
     // {"name":{"last":"Smith"}}
-    ```
+```
 
     Set a new array value:
-    ```go
+```go
     value, _ := djson.Set(`{"friends":["Andy","Carol"]}`, "friends.2", "Sara")
 println(value)
 
     // Output:
     // {"friends":["Andy","Carol","Sara"]
-    ```
+```
 
     Append an array value by using the `-1` key in a path:
-    ```go
+```go
     value, _ := djson.Set(`{"friends":["Andy","Carol"]}`, "friends.-1", "Sara")
 println(value)
 
     // Output:
     // {"friends":["Andy","Carol","Sara"]
-    ```
+```
 
     Append an array value that is past the end:
-    ```go
+```go
     value, _ := djson.Set(`{"friends":["Andy","Carol"]}`, "friends.4", "Sara")
 println(value)
 
     // Output:
     // {"friends":["Andy","Carol",null,null,"Sara"]
-    ```
+```
 
     Delete a value:
-    ```go
+```go
     value, _ := djson.Delete(`{"name":{"first":"Sara","last":"Anderson"}}`, "name.first")
 println(value)
 
     // Output:
     // {"name":{"last":"Anderson"}}
-    ```
+```
 
     Delete an array value:
-    ```go
+```go
     value, _ := djson.Delete(`{"friends":["Andy","Carol"]}`, "friends.1")
 println(value)
 
     // Output:
     // {"friends":["Andy"]}
-    ```
+```
 
     Delete the last array value:
-    ```go
+```go
     value, _ := djson.Delete(`{"friends":["Andy","Carol"]}`, "friends.-1")
 println(value)
 
     // Output:
     // {"friends":["Andy"]}
-    ```
+```
 
