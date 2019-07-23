@@ -32,10 +32,18 @@ import "github.com/relunctance/djson"
 const json = `{"name":{"first":"Janet","last":"Prichard"},"age":47}`
 
 func main() {
-    value, _ := djson.Delete(json, "name.last", "Anderson")
+    value, _ := djson.Set(json, "name.last", "Anderson")
     println(value)
 }
 ```
+
+This will print:
+
+```json
+{"name":{"first":"Janet","last":"Anderson"},"age":47}
+```
+
+
 ```go
 package main
 
@@ -104,11 +112,6 @@ func main() {
 
 ```
 
-This will print:
-
-```json
-{"name":{"first":"Janet","last":"Anderson"},"age":47}
-```
 
 Path syntax
 -----------
