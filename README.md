@@ -47,7 +47,11 @@ This will print:
 ```go
 package main
 
-import "github.com/relunctance/djson"
+import (
+	"fmt"
+
+	"github.com/relunctance/djson"
+)
 
 const json = `{
     "name": {"first": "Tom", "last": "Anderson"},
@@ -102,12 +106,8 @@ func main() {
 		"friends.#.c.#.tabname",
 	}
 	ret, _ := djson.Deletes(json, paths)
-	if err != nil {
-		panic(err)
-	}
-	println(ret)
+	fmt.Println(ret)
 }
-
 ```
 
 
@@ -275,6 +275,7 @@ package main
 
 import (
 	"fmt"
+
 	"github.com/relunctance/djson"
 )
 
@@ -385,10 +386,10 @@ func main() {
 		"ipinfo.*.*.isp",
 		"ipinfo.*.name.idd_code",
 		"ipinfo.'1.0.0.1001'.name.city",
-		"ipinfo.slice.#.city",  
+		"ipinfo.slice.#.city",
 		"ipinfo.slice.#.city_name",
 	}
-    j , _ :=djson.Deletes(json  paths)
-    println(j)
+	j, _ := djson.Deletes(json, paths)
+	fmt.Println(j)
 }
 ```
