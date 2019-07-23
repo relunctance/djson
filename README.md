@@ -1,4 +1,4 @@
-# json
+# DJSON
 Go json delete with field
 
 Getting Started
@@ -33,8 +33,75 @@ const json = `{"name":{"first":"Janet","last":"Prichard"},"age":47}`
 
 func main() {
     value, _ := djson.Delete(json, "name.last", "Anderson")
-        println(value)
+    println(value)
 }
+```
+```go
+package main
+
+import "github.com/relunctance/djson"
+
+const json = `{
+    "name": {"first": "Tom", "last": "Anderson"},
+    "age":37,
+    "children": ["Sara","Alex","Jack"],
+    "fav.movie": "Deer Hunter",
+    "friends": [
+        {"last": "Murphy"},
+        {"first": "Roger", "last": "Craig","name":"abc"},
+        {"first": "James1", "last": "Murphy"},
+        {
+            "first": "Roger2", 
+            "last": "Craig",
+            "name":"abc",
+            "c":[
+
+                {
+                    "kw": {
+                        "signature": [
+                            "c1"
+                        ]
+                    },
+                    "tabname": "tab1"
+               },
+                {
+                    "kw": {
+                        "signature": [
+                            "c2"
+                        ]
+                    },
+                    "tabname": "tab2"
+               },
+                {
+                    "kw": {
+                        "signature": [
+                            "c3"
+                        ]
+                    },
+                    "tabname": "tab3"
+               }
+            ]
+        }
+    ]
+}`
+
+func main() {
+    value, _ := djson.Delete(json, "name.last", "Anderson")
+    println(value)
+}
+
+	paths := []string{
+		"age",
+		"children.0",
+		"friends.#.first",
+		"friends.#.c.#.tabname",
+	}
+	ret, _ := Deletes(json, paths)
+	if err != nil {
+		panic(err)
+	}
+	println(ret)
+
 ```
 
 This will print:
