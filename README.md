@@ -94,9 +94,6 @@ const json = `{
 }`
 
 func main() {
-    value, _ := djson.Delete(json, "name.last", "Anderson")
-    println(value)
-}
 
 	paths := []string{
 		"age",
@@ -104,11 +101,12 @@ func main() {
 		"friends.#.first",
 		"friends.#.c.#.tabname",
 	}
-	ret, _ := Deletes(json, paths)
+	ret, _ := djson.Deletes(json, paths)
 	if err != nil {
 		panic(err)
 	}
 	println(ret)
+}
 
 ```
 
@@ -271,3 +269,126 @@ println(value)
     // {"friends":["Andy"]}
 ```
 
+
+```go
+package main
+
+import (
+	"fmt"
+	"github.com/relunctance/djson"
+)
+
+func main() {
+
+	const json = `{
+				 "ipinfo": {
+				   	"1.0.0.1001":  {
+							 "name":{
+								"china_admin_code": "330001",
+								"city": "",
+								"city_name": "",
+								"continent_code": "AP",
+								"country": "",
+								"country_code": "CN",
+								"country_code2": "",
+								"country_name": "中国",
+								"idd_code": "86",
+								"isp": "",
+								"isp_domain": "电信",
+								"latitude": "30.287459",
+								"longitude": "120.153576",
+								"owner_domain": "",
+								"proxy_type": "",
+								"region": "",
+								"region_name": "浙江",
+								"timezone": "Asia/Shanghai",
+								"ip": "36.17.88.60",
+								"utc_offset": "UTC+8"
+							}
+					},
+				   	"val":  {
+							 "name":{
+								"china_admin_code": "330001",
+								"city": "",
+								"city_name": "",
+								"continent_code": "AP",
+								"country": "",
+								"country_code": "CN",
+								"country_code2": "",
+								"country_name": "中国",
+								"idd_code": "86",
+								"isp": "",
+								"isp_domain": "电信",
+								"latitude": "30.287459",
+								"longitude": "120.153576",
+								"owner_domain": "",
+								"proxy_type": "",
+								"region": "",
+								"region_name": "浙江",
+								"timezone": "Asia/Shanghai",
+								"ip": "36.17.88.60",
+								"utc_offset": "UTC+8"
+							}
+					},
+					"slice": [ 
+						 {
+							"china_admin_code": "330001",
+							"city": "",
+							"city_name": "",
+							"continent_code": "AP",
+							"country": "",
+							"country_code": "CN",
+							"country_code2": "",
+							"country_name": "中国",
+							"idd_code": "86",
+							"isp": "",
+							"isp_domain": "电信",
+							"latitude": "30.287459",
+							"longitude": "120.153576",
+							"owner_domain": "",
+							"proxy_type": "",
+							"region": "",
+							"region_name": "浙江",
+							"timezone": "Asia/Shanghai",
+							"ip": "36.17.88.60",
+							"utc_offset": "UTC+8"
+						},
+						{
+							"china_admin_code": "330002",
+							"city": "",
+							"city_name": "",
+							"continent_code": "AS",
+							"country": "",
+							"country_code": "CN",
+							"country_code2": "",
+							"country_name": "中国",
+							"idd_code": "86",
+							"isp": "",
+							"isp_domain": "电信",
+							"latitude": "30.287459",
+							"longitude": "120.153576",
+							"owner_domain": "",
+							"proxy_type": "",
+							"region": "",
+							"region_name": "浙江",
+							"timezone": "Asia/Shanghai",
+							"ip": "36.17.88.60",
+							"utc_offset": "UTC+8"
+						}
+					]
+			}
+    }`
+
+	paths := []string{
+		"ipinfo.val.name.china_admin_code",
+		"ipinfo.val.name.city",
+		"ipinfo.*.*.isp",
+		"ipinfo.*.name.idd_code",
+		"ipinfo.'1.0.0.1001'.name.city",
+		"ipinfo.slice.#.city",  
+		"ipinfo.slice.#.city_name",
+	}
+    j , _ :=djson.Deletes(json  paths)
+    println(j)
+}
+```
