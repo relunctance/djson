@@ -10,7 +10,7 @@ Installing
 To start using DJSON, install Go and run `go get`:
 
 ```sh
-$ go get -u github.com/relunctance/djson
+go get -u github.com/relunctance/djson
 ```
 
 This will retrieve the library.
