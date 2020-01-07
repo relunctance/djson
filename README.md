@@ -447,3 +447,7 @@ func main() {
 	fmt.Println(j)
 }
 ```
+
+Thanks 
+-----------
+[github.com/tidwall/sjson](https://github.com/tidwall/sjson)
