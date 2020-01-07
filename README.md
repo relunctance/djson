@@ -44,6 +44,8 @@ This will print:
 {"name":{"first":"Janet","last":"Anderson"},"age":47}
 ```
 
+Set path to filter json by custom
+Example:
 
 ```go
 package main
