@@ -1,5 +1,6 @@
 # DJSON
 Go json delete with field
+You can used djson to filter json  by path
 
 Getting Started
 ===============
