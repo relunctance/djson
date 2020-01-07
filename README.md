@@ -1,6 +1,7 @@
 # DJSON
 Go json delete with field
 You can used djson to filter json  by path
+If you want get a select field , you can visit [sjson](https://github.com/relunctance/sjson)
 
 Getting Started
 ===============
