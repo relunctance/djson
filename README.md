@@ -341,7 +341,7 @@ func main() {
 
 	const json = `{
 				 "ipinfo": {
-				   	"1001001":  {
+				   	"1001.001":  {
 							 "name":{
 								"china_admin_code": "330001",
 								"city": "",
@@ -443,7 +443,7 @@ func main() {
 		"ipinfo.val.name.city",
 		"ipinfo.*.*.isp",
 		"ipinfo.*.name.idd_code",
-		"ipinfo.'1.0.0.1001'.name.city",
+		"ipinfo.'1001.001'.name.city",
 		"ipinfo.slice.#.city",
 		"ipinfo.slice.#.city_name",
 	}
