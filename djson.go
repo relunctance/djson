@@ -1,6 +1,8 @@
 package djson
 
-import "github.com/tidwall/sjson"
+import (
+	"github.com/tidwall/sjson"
+)
 
 // Set sets a json value for the specified path.
 // A path is in dot syntax, such as "name.last" or "age".

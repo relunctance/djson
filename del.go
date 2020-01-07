@@ -49,5 +49,5 @@ func splitPaths(paths []string) (normalPaths []string, deepPaths []string) {
 }
 
 func deleteDeep(s string, paths []string) (string, error) {
-	return JsonDeleteString(s, paths)
+	return jsonDeleteString(s, paths)
 }

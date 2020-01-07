@@ -2,44 +2,59 @@ package djson
 
 import (
 	"fmt"
+	"sort"
 	"strings"
 
 	sj "github.com/guyannanfei25/go-simplejson"
-	"github.com/relunctance/goutils/fc"
 )
 
-func JsonDeleteString(json string, paths []string) (string, error) {
-	j, err := sj.NewJson([]byte(json))
-	if err != nil {
-		return "", err
-	}
-	j = JsonDelete(j, paths)
-	return fc.JsonDecode(j), nil
+func jsonDeleteString(json string, paths []string) (string, error) {
+	ret, err := jsonDeleteBytes([]byte(json), paths)
+	return string(ret), err
 }
 
-func JsonDeleteBytes(json []byte, paths []string) ([]byte, error) {
+func jsonDeleteBytes(json []byte, paths []string) ([]byte, error) {
 	j, err := sj.NewJson(json)
 	if err != nil {
 		return nil, err
 	}
-	j = JsonDelete(j, paths)
+	j, err = jsonDelete(j, paths)
+	if err != nil {
+		return nil, err
+	}
 	return j.MarshalJSON()
 }
 
-// 对出唯一输出
-func JsonDelete(j *sj.Json, paths []string) *sj.Json {
-	v := newVjson(j, paths)
-	v.run()
-	return v.json()
+func jsonDelete(j *sj.Json, paths []string) (*sj.Json, error) {
+	v, err := newVjson(j, paths)
+	if err == nil {
+		v.run()
+	}
+	return v.json(), err
 }
 
-func newVjson(j *sj.Json, paths []string) *vjson {
-	vj := &vjson{
-		j: j,
+func newVjson(j *sj.Json, paths []string) (vj *vjson, err error) {
+	vj = &vjson{j: j}
+	paths = sliceStringUnique(paths)
+	vj.fs, err = vj.buildFs(paths)
+	return vj, err
+}
+
+func sliceStringUnique(slice []string) []string {
+	sort.Strings(slice)
+	i := 0
+	var j int
+	for {
+		if i >= len(slice)-1 {
+			break
+		}
+		for j = i + 1; j < len(slice) && slice[i] == slice[j]; j++ {
+		}
+		slice = append(slice[:i+1], slice[j:]...)
+		i++
 	}
-	paths = fc.SliceStringUnique(paths)
-	vj.fs = vj.buildFs(paths)
-	return vj
+	return slice
+
 }
 
 type vjson struct {
@@ -52,7 +67,6 @@ type vjson struct {
 func (v *vjson) nextFs(i int, paths []string) (ret []string) {
 	if i >= len(paths) {
 		return
-
 	}
 	return paths[i:]
 }
@@ -111,20 +125,18 @@ func (v *vjson) json() *sj.Json {
 	return v.j
 }
 
-func (v *vjson) buildFs(paths []string) (ret [][]string) {
+func (v *vjson) buildFs(paths []string) (ret [][]string, err error) {
 	ret = make([][]string, 0, len(paths))
 	for _, path := range paths {
 		path = strings.TrimSpace(path)
 		if len(path) == 0 {
-			fmt.Println("111")
 			continue
 		}
 		fs := splitComma(path)
-		if err := v.checkLast(fs[len(fs)-1]); err != nil {
-			panic(err)
+		if err = v.checkLast(fs[len(fs)-1]); err != nil {
+			return
 		}
 		ret = append(ret, fs)
-
 	}
 	return
 }
@@ -136,26 +148,21 @@ func (v *vjson) checkLast(val string) error {
 	return nil
 }
 
-func splitComma(path string) []string {
+func splitComma(path string) (ret []string) {
 	path = strings.TrimSpace(path)
-	ret := make([]string, 0, 3)
-	if strings.Index(path, "'") != -1 {
-		arr := strings.Split(path, "'")
-		for _, v := range arr {
-			if v == "" {
-				continue
-			}
-			if v == "." {
-				continue
-			}
-			if v[0] == '.' || v[len(v)-1] == '.' {
-				ret = append(ret, strings.Split(strings.Trim(v, "."), ".")...)
-			} else {
-				ret = append(ret, v)
-			}
+	if strings.Index(path, "'") == -1 {
+		return strings.Split(path, ".")
+	}
+	arr := strings.Split(path, "'")
+	for _, v := range arr {
+		if v == "" || v == "." {
+			continue
 		}
-	} else {
-		ret = strings.Split(path, ".")
+		if v[0] == '.' || v[len(v)-1] == '.' {
+			ret = append(ret, strings.Split(strings.Trim(v, "."), ".")...)
+		} else {
+			ret = append(ret, v)
+		}
 	}
 	return ret
 }

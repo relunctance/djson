@@ -1,12 +1,13 @@
 package djson
 
 import (
+	"crypto/md5"
 	"fmt"
 	"io/ioutil"
+	"os"
 	"testing"
 
 	sj "github.com/guyannanfei25/go-simplejson"
-	"github.com/relunctance/goutils/fc"
 )
 
 func TestFsSplit(t *testing.T) {
@@ -36,8 +37,7 @@ func TestMapDelete(t *testing.T) {
 		"ipinfo.val.name.china_admin_code", //支持去重
 	})
 	v.run()
-
-	fmt.Println(fc.JsonDecode(v.json()))
+	fmt.Println(jsonDecode(v.json()))
 
 }
 
@@ -47,8 +47,8 @@ func TestSliceDelete(t *testing.T) {
 		"ipinfo.val.#.city",
 	})
 	v.run()
-	fmt.Println(fc.JsonDecode(v.json()))
-	if fc.Md5(fc.JsonDecode(v.json())) != "82d5fb62bb2a121542d7da897af6a459" {
+	fmt.Println(jsonDecode(v.json()))
+	if Md5(jsonDecode(v.json())) != "82d5fb62bb2a121542d7da897af6a459" {
 		t.Fatalf("should be = '82d5fb62bb2a121542d7da897af6a459'")
 	}
 
@@ -60,12 +60,12 @@ func TestUnsetMultiIpField(t *testing.T) {
 		"ipinfo.*.*.ip",
 		"ipinfo.*.*.china_admin_code",
 	}
-	v := newVjson(j, fields)
+	v, _ := newVjson(j, fields)
 	v.run()
 
-	fmt.Println(fc.JsonDecode(v.json()))
+	fmt.Println(jsonDecode(v.json()))
 
-	if fc.Md5(fc.JsonDecode(v.json())) != "cc1ec297265719c4924cbb58dc64411a" {
+	if Md5(jsonDecode(v.json())) != "cc1ec297265719c4924cbb58dc64411a" {
 		t.Fatalf("should be = 'cc1ec297265719c4924cbb58dc64411a'")
 	}
 }
@@ -76,18 +76,18 @@ func TestUnsetIpInfoMap(t *testing.T) {
 		"ipinfo.*.info.city",
 		"ipinfo.*.info.city_name",
 	}
-	v := newVjson(j, fields)
+	v, _ := newVjson(j, fields)
 	v.run()
-	fmt.Println(fc.JsonDecode(v.json()))
+	fmt.Println(jsonDecode(v.json()))
 
-	if fc.Md5(fc.JsonDecode(v.json())) != "edf40ffd6817cae71ec67e0f51cd25cf" {
-		t.Fatalf("should be = 'edf40ffd6817cae71ec67e0f51cd25cf'")
+	if m := Md5(jsonDecode(v.json())); m != "edf40ffd6817cae71ec67e0f51cd25cf" {
+		t.Fatalf("should be = 'edf40ffd6817cae71ec67e0f51cd25cf' , but is:[%s]\n", m)
 	}
 }
 
 func buildVjson(name string, fields []string) *vjson {
 	j := newJsonByFile(name)
-	v := newVjson(j, fields)
+	v, _ := newVjson(j, fields)
 	return v
 }
 
@@ -102,7 +102,7 @@ func newJsonByFile(filename string) *sj.Json {
 
 func getDataByName(filename string) []byte {
 	path := fmt.Sprintf("./data/%s", filename)
-	if !fc.IsExist(path) {
+	if !isExist(path) {
 		panic(fmt.Errorf("not exists: %s", path))
 	}
 	data, err := ioutil.ReadFile(path)
@@ -110,4 +110,25 @@ func getDataByName(filename string) []byte {
 		panic(err)
 	}
 	return data
+}
+
+func jsonDecode(j *sj.Json) string {
+	if j == nil {
+		return ""
+	}
+	bytes, err := j.MarshalJSON()
+	if err != nil {
+		panic(err)
+	}
+	return string(bytes)
+}
+
+func Md5(str string) string {
+	return fmt.Sprintf("%x", md5.Sum([]byte(str)))
+}
+
+func isExist(filename string) bool {
+	_, err := os.Stat(filename)
+
+	return err == nil
 }
