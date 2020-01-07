@@ -337,7 +337,7 @@ func main() {
 
 	const json = `{
 				 "ipinfo": {
-				   	"1.0.0.1001":  {
+				   	"1001001":  {
 							 "name":{
 								"china_admin_code": "330001",
 								"city": "",
@@ -346,18 +346,18 @@ func main() {
 								"country": "",
 								"country_code": "CN",
 								"country_code2": "",
-								"country_name": "中国",
+								"country_name": "china",
 								"idd_code": "86",
 								"isp": "",
-								"isp_domain": "电信",
+								"isp_domain": "mobile",
 								"latitude": "30.287459",
 								"longitude": "120.153576",
 								"owner_domain": "",
 								"proxy_type": "",
 								"region": "",
-								"region_name": "浙江",
+								"region_name": "zj",
 								"timezone": "Asia/Shanghai",
-								"ip": "36.17.88.60",
+								"ip": "1.1.1.1",
 								"utc_offset": "UTC+8"
 							}
 					},
@@ -370,18 +370,18 @@ func main() {
 								"country": "",
 								"country_code": "CN",
 								"country_code2": "",
-								"country_name": "中国",
+								"country_name": "china",
 								"idd_code": "86",
 								"isp": "",
-								"isp_domain": "电信",
+								"isp_domain": "mobile",
 								"latitude": "30.287459",
 								"longitude": "120.153576",
 								"owner_domain": "",
 								"proxy_type": "",
 								"region": "",
-								"region_name": "浙江",
+								"region_name": "zj",
 								"timezone": "Asia/Shanghai",
-								"ip": "36.17.88.60",
+								"ip": "1.1.1.1",
 								"utc_offset": "UTC+8"
 							}
 					},
@@ -394,18 +394,18 @@ func main() {
 							"country": "",
 							"country_code": "CN",
 							"country_code2": "",
-							"country_name": "中国",
+							"country_name": "china",
 							"idd_code": "86",
 							"isp": "",
-							"isp_domain": "电信",
+							"isp_domain": "mobile",
 							"latitude": "30.287459",
 							"longitude": "120.153576",
 							"owner_domain": "",
 							"proxy_type": "",
 							"region": "",
-							"region_name": "浙江",
+							"region_name": "zj",
 							"timezone": "Asia/Shanghai",
-							"ip": "36.17.88.60",
+							"ip": "1.1.1.1",
 							"utc_offset": "UTC+8"
 						},
 						{
@@ -416,18 +416,18 @@ func main() {
 							"country": "",
 							"country_code": "CN",
 							"country_code2": "",
-							"country_name": "中国",
+							"country_name": "china",
 							"idd_code": "86",
 							"isp": "",
-							"isp_domain": "电信",
+							"isp_domain": "mobile",
 							"latitude": "30.287459",
 							"longitude": "120.153576",
 							"owner_domain": "",
 							"proxy_type": "",
 							"region": "",
-							"region_name": "浙江",
+							"region_name": "zj",
 							"timezone": "Asia/Shanghai",
-							"ip": "36.17.88.60",
+							"ip": "1.1.1.1",
 							"utc_offset": "UTC+8"
 						}
 					]
