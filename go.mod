@@ -1,4 +1,4 @@
-module djson
+module github.com/relunctance/djson
 
 go 1.13
 
