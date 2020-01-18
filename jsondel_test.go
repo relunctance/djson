@@ -7,7 +7,7 @@ import (
 	"os"
 	"testing"
 
-	sj "github.com/guyannanfei25/go-simplejson"
+	sj "github.com/relunctance/gosimplejson"
 )
 
 func TestFsSplit(t *testing.T) {

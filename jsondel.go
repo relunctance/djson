@@ -5,7 +5,7 @@ import (
 	"sort"
 	"strings"
 
-	sj "github.com/guyannanfei25/go-simplejson"
+	sj "github.com/relunctance/gosimplejson"
 )
 
 func jsonDeleteString(json string, paths []string) (string, error) {
@@ -143,7 +143,7 @@ func (v *vjson) buildFs(paths []string) (ret [][]string, err error) {
 
 func (v *vjson) checkLast(val string) error {
 	if val == "*" || val == "#" {
-		return fmt.Errorf("last char can not be '%s'", v)
+		return fmt.Errorf("last char can not be '%s'", val)
 	}
 	return nil
 }
