@@ -117,7 +117,6 @@ func (v *vjson) unset(j *sj.Json, paths []string) error {
 		}
 
 	}
-
 	return nil
 }
 
@@ -141,10 +140,11 @@ func (v *vjson) buildFs(paths []string) (ret [][]string, err error) {
 	return
 }
 
+// TODO unset *这种情况
 func (v *vjson) checkLast(val string) error {
-	if val == "*" || val == "#" {
-		return fmt.Errorf("last char can not be '%s'", val)
-	}
+	//if val == "*" || val == "#" {
+	//return fmt.Errorf("last char can not be '%s'", val)
+	//}
 	return nil
 }
 
