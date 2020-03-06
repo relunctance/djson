@@ -4,4 +4,5 @@
 #go test -run "TestSliceDelete" -v
 #go test -run "TestUnsetIpInfoMap" -v
 #go test -run "TestUnsetMultiIpField" -v
-go test -run "TestFsSplit" -v
+#go test -run "TestFsSplit" -v
+go test -run "TestAllDelete" -v

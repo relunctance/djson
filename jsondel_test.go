@@ -40,6 +40,13 @@ func TestMapDelete(t *testing.T) {
 	fmt.Println(jsonDecode(v.json()))
 
 }
+func TestAllDelete(t *testing.T) {
+	v := buildVjson("slice.json", []string{
+		"ipinfo.val.#.*",
+	})
+	v.run()
+	fmt.Println(jsonDecode(v.json()))
+}
 
 func TestSliceDelete(t *testing.T) {
 	v := buildVjson("slice.json", []string{

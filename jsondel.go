@@ -86,7 +86,7 @@ func (v *vjson) unset(j *sj.Json, paths []string) error {
 	for i, fname := range paths {
 		offset := i + 1
 		nextfs := v.nextFs(offset, paths)
-		if v.isEndFname(fname) {
+		if v.isEndFname(fname) && fname != "*" {
 			j.Del(fname) // 删除
 			break
 		}
@@ -95,6 +95,12 @@ func (v *vjson) unset(j *sj.Json, paths []string) error {
 			vmap, err := j.Map()
 			if err != nil {
 				return fmt.Errorf("path is set '*' map pos error ")
+			}
+			if len(nextfs) == 0 { // 说明最后一个是*
+				for k, _ := range vmap {
+					j.Del(k)
+				}
+				break
 			}
 			for key, _ := range vmap {
 				v.iterJ = j.Get(key)

@@ -15,6 +15,9 @@ github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZb
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
 github.com/relunctance/gosimplejson v0.6.0 h1:b9YFdHEr//1V4fWlIMZS6nJNNNZ6iJUiXrDtu6L6E2s=
 github.com/relunctance/gosimplejson v0.6.0/go.mod h1:HsRB8FZzyJhdr86TIsKkC4DJAjzSJmzy3ChXQ2eSwXA=
+github.com/relunctance/goutils v0.0.0-20200223100029-efa8ccb90e4a h1:DutmC2nMXjKyp/IwqTJUPoIKTjJljS27nNtExaqeeWY=
+github.com/relunctance/goutils/dump v0.0.0-20200223100029-efa8ccb90e4a h1:g7urKHuUiFLTxwj5OdcU/0bssh083x3jgXLRfd/8ZeU=
+github.com/relunctance/goutils/dump v0.0.0-20200223100029-efa8ccb90e4a/go.mod h1:HYhbI3s0UrnPdJ/sk7T++VNkBWAqXZSsKMc06tcekQs=
 github.com/stretchr/objx v0.1.0/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=
 github.com/stretchr/testify v1.4.0 h1:2E4SXV/wtOkTonXsotYi4li6zVWxYlZuYNCXe9XRJyk=
 github.com/stretchr/testify v1.4.0/go.mod h1:j7eGeouHqKxXV5pUuKE4zz7dFj8WfuZ+81PSLYec5m4=
