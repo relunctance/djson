@@ -25,6 +25,10 @@ func jsonDeleteBytes(json []byte, paths []string) ([]byte, error) {
 	return j.MarshalJSON()
 }
 
+func JsonDelete(j *sj.Json, paths []string) (*sj.Json, error) {
+	return jsonDelete(j, paths)
+}
+
 func jsonDelete(j *sj.Json, paths []string) (*sj.Json, error) {
 	v, err := newVjson(j, paths)
 	if err == nil {
